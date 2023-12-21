@@ -1,8 +1,8 @@
-package checkout
+package components.checkout
 
 import com.arkivanov.decompose.ComponentContext
 
-class Step1Component (
+class Step3Component (
     componentContext: ComponentContext
 ) : ComponentContext by componentContext{
 }

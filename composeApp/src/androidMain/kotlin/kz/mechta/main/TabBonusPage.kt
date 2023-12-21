@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import main.TabBonusComponent
+import components.main.TabBonusComponent
 
 @Composable
 fun TabBonusPage(

@@ -11,8 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import on_boarding.OnBoardingComponent
-import on_boarding.OnBoardingEvent
+import components.on_boarding.OnBoardingComponent
+import components.on_boarding.OnBoardingEvent
 
 @Composable
 fun OnBoardingPage(component: OnBoardingComponent) {

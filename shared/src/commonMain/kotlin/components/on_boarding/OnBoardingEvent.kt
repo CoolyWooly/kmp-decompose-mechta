@@ -1,4 +1,4 @@
-package on_boarding
+package components.on_boarding
 
 sealed interface OnBoardingEvent {
     data class OnIndexChange(val index: Int): OnBoardingEvent

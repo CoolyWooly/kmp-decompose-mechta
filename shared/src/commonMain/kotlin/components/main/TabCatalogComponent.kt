@@ -1,8 +1,8 @@
-package main
+package components.main
 
 import com.arkivanov.decompose.ComponentContext
 
-class TabProfileComponent (
+class TabCatalogComponent (
     componentContext: ComponentContext
 ) : ComponentContext by componentContext{
 }

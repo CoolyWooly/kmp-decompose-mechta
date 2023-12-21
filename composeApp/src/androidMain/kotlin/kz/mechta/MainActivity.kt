@@ -1,6 +1,6 @@
 package kz.mechta
 
-import RootComponent
+import components.RootComponent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
             RootComponent(it)
         }
         setContent {
-            App(root)
+            RootPage(root)
         }
     }
 }

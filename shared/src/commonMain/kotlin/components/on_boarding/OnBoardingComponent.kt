@@ -1,4 +1,4 @@
-package on_boarding
+package components.on_boarding
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue

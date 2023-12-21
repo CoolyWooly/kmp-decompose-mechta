@@ -1,8 +1,8 @@
-package main
+package components.checkout
 
 import com.arkivanov.decompose.ComponentContext
 
-class TabBonusComponent (
+class Step2Component (
     componentContext: ComponentContext
 ) : ComponentContext by componentContext{
 }

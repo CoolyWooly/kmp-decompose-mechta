@@ -24,7 +24,7 @@ kotlin {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.decompose)
-            implementation(libs.kotlinx.coroutines.android)
+            implementation(libs.koin.core)
         }
         commonMain.dependencies {
             implementation(projects.shared)

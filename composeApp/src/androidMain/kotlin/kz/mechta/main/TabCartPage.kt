@@ -5,9 +5,9 @@ import androidx.compose.material.Button
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import main.TabCartComponent
-import main.TabCartEvent
-import on_boarding.OnBoardingEvent
+import components.main.TabCartComponent
+import components.main.TabCartEvent
+import components.on_boarding.OnBoardingEvent
 
 @Composable
 fun TabCartPage(

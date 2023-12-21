@@ -1,12 +1,14 @@
-import checkout.CheckoutComponent
+package components
+
+import components.checkout.CheckoutComponent
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.router.stack.replaceAll
 import kotlinx.serialization.Serializable
-import main.MainComponent
-import on_boarding.OnBoardingComponent
+import components.main.MainComponent
+import components.on_boarding.OnBoardingComponent
 
 class RootComponent(
     componentContext: ComponentContext

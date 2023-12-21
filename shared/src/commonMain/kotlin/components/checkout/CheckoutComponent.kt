@@ -1,20 +1,38 @@
-package checkout
+package components.checkout
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.bringToFront
 import com.arkivanov.decompose.router.stack.childStack
+import com.arkivanov.essenty.lifecycle.Lifecycle
+import com.arkivanov.essenty.lifecycle.LifecycleOwner
+import com.arkivanov.essenty.lifecycle.doOnDestroy
 import kotlinx.serialization.Serializable
-import main.TabBonusComponent
-import main.TabCartComponent
-import main.TabCatalogComponent
-import main.TabHomeComponent
+import components.main.TabBonusComponent
+import components.main.TabCartComponent
+import components.main.TabCatalogComponent
+import components.main.TabHomeComponent
+import domain.ProductRepository
+import domain.UserRepository
+import extensions.Result
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.suspendCoroutine
 
 class CheckoutComponent(
-    componentContext: ComponentContext
-) : ComponentContext by componentContext {
+    componentContext: ComponentContext,
+) : ComponentContext by componentContext, KoinComponent {
 
     private val navigation = StackNavigation<Configuration>()
+    private val productRepository by inject<ProductRepository>()
+    private val userRepository by inject<UserRepository>()
 
     val childStack = childStack(
         source = navigation,
@@ -28,6 +46,27 @@ class CheckoutComponent(
         configuration: Configuration,
         context: ComponentContext
     ): Child {
+
+        val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+
+//        val scope = componentCoroutineScope()
+//
+        scope.launch {
+            when (val data = productRepository.getProduct("123")) {
+                is Result.Error -> {}
+                is Result.Loading -> {}
+                is Result.Success -> {
+                    println(data.value.id)
+                }
+            }
+            when (val data = userRepository.getProduct("456")) {
+                is Result.Error -> {}
+                is Result.Loading -> {}
+                is Result.Success -> {
+                    println(data.value.id)
+                }
+            }
+        }
         return when (configuration) {
             is Configuration.Step1 -> Child.Step1(
                 Step1Component(
