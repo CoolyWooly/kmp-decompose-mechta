@@ -1,5 +1,6 @@
 package di
 
+import constants.HOST
 import domain.ProductRepository
 import domain.ProductRepositoryImpl
 import domain.UserRepository
@@ -37,7 +38,7 @@ private val networkModule = module {
     single {
         createPlatformHttpClient().config {
             defaultRequest {
-                url.takeFrom(URLBuilder().takeFrom("https://mechta.kz/"))
+                url.takeFrom(URLBuilder().takeFrom(HOST))
             }
             install(HttpTimeout) {
                 requestTimeoutMillis = 15_000

@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import org.jetbrains.kotlin.konan.target.Family
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
@@ -5,6 +8,16 @@ plugins {
 }
 
 kotlin {
+//    targets
+//        .filterIsInstance<KotlinNativeTarget>()
+//        .filter { it.konanTarget.family == Family.IOS }
+//        .forEach {
+//            it.binaries.framework {
+//                export(libs.decompose)
+//                export(libs.essenty.lifecycle)
+//            }
+//        }
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -13,6 +26,10 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "Shared"
             isStatic = true
+            export(libs.decompose)
+            export(libs.essenty.lifecycle)
+            export(libs.essenty.state.keeper)
+            export(libs.parcelize.darwin.runtime)
         }
     }
     
@@ -29,7 +46,12 @@ kotlin {
             implementation(libs.ktor.client.android)
         }
         iosMain.dependencies {
-            implementation(libs.ktor.client.darwin)
+            api(libs.ktor.client.darwin)
+//            implementation(libs.decompose)
+            api(libs.decompose)
+            api(libs.essenty.lifecycle)
+            api(libs.essenty.state.keeper)
+            api(libs.parcelize.darwin.runtime)
         }
         commonMain.dependencies {
             implementation(libs.decompose)
