@@ -1,23 +1,11 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
-import org.jetbrains.kotlin.konan.target.Family
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.resources)
 }
 
 kotlin {
-//    targets
-//        .filterIsInstance<KotlinNativeTarget>()
-//        .filter { it.konanTarget.family == Family.IOS }
-//        .forEach {
-//            it.binaries.framework {
-//                export(libs.decompose)
-//                export(libs.essenty.lifecycle)
-//            }
-//        }
-
     listOf(
         iosX64(),
         iosArm64(),
@@ -30,6 +18,7 @@ kotlin {
             export(libs.essenty.lifecycle)
             export(libs.essenty.state.keeper)
             export(libs.parcelize.darwin.runtime)
+            export(libs.resources)
         }
     }
     
@@ -47,7 +36,6 @@ kotlin {
         }
         iosMain.dependencies {
             api(libs.ktor.client.darwin)
-//            implementation(libs.decompose)
             api(libs.decompose)
             api(libs.essenty.lifecycle)
             api(libs.essenty.state.keeper)
@@ -62,6 +50,7 @@ kotlin {
             implementation(libs.ktor.client.logging)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.resources)
         }
     }
 }

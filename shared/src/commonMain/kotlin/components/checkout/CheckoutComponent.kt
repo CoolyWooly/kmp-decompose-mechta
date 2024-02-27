@@ -4,27 +4,16 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.bringToFront
 import com.arkivanov.decompose.router.stack.childStack
-import com.arkivanov.essenty.lifecycle.Lifecycle
-import com.arkivanov.essenty.lifecycle.LifecycleOwner
-import com.arkivanov.essenty.lifecycle.doOnDestroy
 import kotlinx.serialization.Serializable
-import components.main.TabBonusComponent
-import components.main.TabCartComponent
-import components.main.TabCatalogComponent
-import components.main.TabHomeComponent
 import domain.ProductRepository
 import domain.UserRepository
 import extensions.Result
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import kotlin.coroutines.CoroutineContext
-import kotlin.coroutines.suspendCoroutine
 
 class CheckoutComponent(
     componentContext: ComponentContext,
@@ -54,14 +43,12 @@ class CheckoutComponent(
         scope.launch {
             when (val data = productRepository.getProduct("123")) {
                 is Result.Error -> {}
-                is Result.Loading -> {}
                 is Result.Success -> {
                     println(data.value.id)
                 }
             }
             when (val data = userRepository.getProduct("456")) {
                 is Result.Error -> {}
-                is Result.Loading -> {}
                 is Result.Success -> {
                     println(data.value.id)
                 }

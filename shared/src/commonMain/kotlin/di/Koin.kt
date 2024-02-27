@@ -1,6 +1,8 @@
 package di
 
 import constants.HOST
+import domain.MapRepository
+import domain.MapRepositoryImpl
 import domain.ProductRepository
 import domain.ProductRepositoryImpl
 import domain.UserRepository
@@ -64,4 +66,5 @@ private val networkModule = module {
 private val repositoryModule = module {
     single<ProductRepository> { ProductRepositoryImpl() }
     single<UserRepository> { UserRepositoryImpl() }
+    single<MapRepository> { MapRepositoryImpl() }
 }

@@ -3,12 +3,12 @@ package kz.mechta.main
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -55,8 +55,8 @@ private fun BottomBar(
     val childStack by component.childStack.subscribeAsState()
     val activeComponent = childStack.active.instance
 
-    BottomNavigation(modifier = modifier) {
-        BottomNavigationItem(
+    NavigationBar(modifier = modifier) {
+        NavigationBarItem(
             selected = activeComponent is MainComponent.Child.TabHome,
             onClick = component::onTabHomeClick,
             icon = {
@@ -66,7 +66,7 @@ private fun BottomBar(
                 )
             },
         )
-        BottomNavigationItem(
+        NavigationBarItem(
             selected = activeComponent is MainComponent.Child.TabCatalog,
             onClick = component::onTabCatalogClick,
             icon = {
@@ -76,7 +76,7 @@ private fun BottomBar(
                 )
             },
         )
-        BottomNavigationItem(
+        NavigationBarItem(
             selected = activeComponent is MainComponent.Child.TabCart,
             onClick = component::onTabCartClick,
             icon = {
@@ -86,7 +86,7 @@ private fun BottomBar(
                 )
             },
         )
-        BottomNavigationItem(
+        NavigationBarItem(
             selected = activeComponent is MainComponent.Child.TabBonus,
             onClick = component::onTabBonusClick,
             icon = {
@@ -96,7 +96,7 @@ private fun BottomBar(
                 )
             },
         )
-        BottomNavigationItem(
+        NavigationBarItem(
             selected = activeComponent is MainComponent.Child.TabProfile,
             onClick = component::onTabProfileClick,
             icon = {

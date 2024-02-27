@@ -1,10 +1,12 @@
 package kz.mechta.main
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import components.main.TabCatalogComponent
+import `mechta-kmp`.shared.MR
 
 @Composable
 fun TabCatalogPage(
@@ -12,7 +14,7 @@ fun TabCatalogPage(
 ) {
     Surface {
         Column {
-            Text(text = "TabCatalogPage")
+            Text(text = stringResource(id = MR.strings.onboard_title_3.resourceId, "Fcasf"))
         }
     }
 }

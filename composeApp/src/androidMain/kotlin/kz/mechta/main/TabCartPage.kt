@@ -1,13 +1,12 @@
 package kz.mechta.main
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Button
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import components.main.TabCartComponent
 import components.main.TabCartEvent
-import components.on_boarding.OnBoardingEvent
 
 @Composable
 fun TabCartPage(

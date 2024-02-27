@@ -21,15 +21,18 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.compose.ui)
             implementation(libs.compose.ui.tooling.preview)
+            implementation(libs.compose.material3)
             implementation(libs.androidx.activity.compose)
             implementation(libs.decompose)
             implementation(libs.koin.core)
+            implementation(libs.resources)
+            implementation(libs.google.location)
+            implementation(libs.google.permissions)
         }
         commonMain.dependencies {
             implementation(projects.shared)
             implementation(compose.runtime)
             implementation(compose.foundation)
-            implementation(compose.material)
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
             implementation(libs.decompose)

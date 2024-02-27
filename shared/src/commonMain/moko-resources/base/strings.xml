@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="onboard_title_1">Гарантия низкой цены</string>
+    <string name="onboard_text_1">Самые низкие цены на более, чем 10 000 товаров! Если найдете дешевле, мы снизим цену!</string>
+    <string name="onboard_title_2">Вернём CashBack бонусами</string>
+    <string name="onboard_text_2">Дарим бонусы за покупки! Бонусами можно оплатить всю стоимость товара</string>
+    <string name="onboard_title_3">Ваш город %1$s?</string>
+    <string name="onboard_text_3">Укажите ваш город, чтобы увидеть актуальные товары с быстрой доставкой</string>
+    <string name="no_another_city">Нет, другой город</string>
+    <string name="yes">Да</string>
+    <string name="select_city">Выберите город</string>
+    <string name="city_search">Поиск города</string>
+    <string name="most_likely_you_here">Скорее всего вы здесь</string>
+</resources>

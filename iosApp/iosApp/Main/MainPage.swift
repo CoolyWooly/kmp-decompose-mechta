@@ -57,6 +57,7 @@ struct MainPage: View {
         }
         
 
+
         
 private struct ChildView: View {
     let child: MainComponent.Child

@@ -6,6 +6,7 @@ import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.router.stack.replaceAll
+import components.city_select.CitySelectComponent
 import kotlinx.serialization.Serializable
 import components.main.MainComponent
 import components.on_boarding.OnBoardingComponent
@@ -47,7 +48,18 @@ class RootComponent(
                     componentContext = context,
                     onNavigateToMain = {
                         navigation.replaceAll(Configuration.Main)
+                    },
+                    onNavigateToCitySelect = {
+                        navigation.push(Configuration.CitySelect)
                     }
+                )
+            )
+            is Configuration.CitySelect -> Child.CitySelect(
+                CitySelectComponent(
+                    componentContext = context,
+                    onNavigateToMain = {
+                        navigation.replaceAll(Configuration.Main)
+                    },
                 )
             )
         }
@@ -57,6 +69,7 @@ class RootComponent(
         data class OnBoarding(val component: OnBoardingComponent): Child()
         data class Main(val component: MainComponent): Child()
         data class Checkout(val component: CheckoutComponent): Child()
+        data class CitySelect(val component: CitySelectComponent): Child()
     }
 
     @Serializable
@@ -67,5 +80,7 @@ class RootComponent(
         data object  Main : Configuration()
         @Serializable
         data object  Checkout : Configuration()
+        @Serializable
+        data object  CitySelect : Configuration()
     }
 }
