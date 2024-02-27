@@ -35,15 +35,14 @@ kotlin {
             implementation(libs.ktor.client.android)
         }
         iosMain.dependencies {
-            api(libs.ktor.client.darwin)
             api(libs.decompose)
             api(libs.essenty.lifecycle)
             api(libs.essenty.state.keeper)
             api(libs.parcelize.darwin.runtime)
+            api(libs.ktor.client.darwin)
         }
         commonMain.dependencies {
             implementation(libs.decompose)
-            implementation(libs.decompose.jetbrains)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.koin.core)
             implementation(libs.ktor.client.core)

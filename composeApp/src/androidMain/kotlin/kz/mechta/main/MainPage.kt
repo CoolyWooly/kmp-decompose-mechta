@@ -12,8 +12,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
-import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
+import com.arkivanov.decompose.extensions.compose.stack.Children
+import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import components.main.MainComponent
 
 @Composable
@@ -22,14 +22,14 @@ fun MainPage(component: MainComponent) {
         modifier = Modifier.fillMaxSize(),
     ) {
         Column {
-            Children(modifier = Modifier.weight(1f), component = component)
+            Child(modifier = Modifier.weight(1f), component = component)
             BottomBar(modifier = Modifier.fillMaxWidth(), component = component)
         }
     }
 }
 
 @Composable
-private fun Children(
+private fun Child(
     modifier: Modifier = Modifier,
     component: MainComponent
 ) {

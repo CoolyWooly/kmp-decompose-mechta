@@ -24,6 +24,7 @@ kotlin {
             implementation(libs.compose.material3)
             implementation(libs.androidx.activity.compose)
             implementation(libs.decompose)
+            implementation(libs.decompose.extensions.compose)
             implementation(libs.koin.core)
             implementation(libs.resources)
             implementation(libs.google.location)
@@ -36,7 +37,6 @@ kotlin {
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
             implementation(libs.decompose)
-            implementation(libs.decompose.jetbrains)
             implementation(libs.kotlinx.serialization.json)
         }
     }

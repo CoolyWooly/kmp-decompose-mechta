@@ -7,9 +7,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import com.arkivanov.decompose.extensions.compose.stack.Children
 import components.checkout.CheckoutComponent
-import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
-import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import kz.mechta.main.TabBonusPage
 import kz.mechta.main.TabCartPage
 import kz.mechta.main.TabCatalogPage
