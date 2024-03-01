@@ -3,7 +3,9 @@ package components
 import components.checkout.CheckoutComponent
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.StackNavigation
+import com.arkivanov.decompose.router.stack.active
 import com.arkivanov.decompose.router.stack.childStack
+import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.router.stack.replaceAll
 import components.city_select.CitySelectComponent
@@ -57,8 +59,11 @@ class RootComponent(
             is Configuration.CitySelect -> Child.CitySelect(
                 CitySelectComponent(
                     componentContext = context,
-                    onNavigateToMain = {
-                        navigation.replaceAll(Configuration.Main)
+                    onSendResult = { cityModel ->
+                        navigation.pop { // Pop ItemDetailsComponent
+                            // Deliver the result
+                            (childStack.active.instance as? Child.OnBoarding)?.component?.onCitySelected(cityModel)
+                        }
                     },
                 )
             )

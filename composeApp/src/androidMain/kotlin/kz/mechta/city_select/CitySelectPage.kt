@@ -20,15 +20,23 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text2.input.TextFieldLineLimits
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
@@ -37,6 +45,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
@@ -50,18 +59,20 @@ import components.city_select.Effect
 import components.city_select.Event
 import kz.mechta.R
 import kz.mechta.theme.MechtaTheme
-import kz.mechta.view.MechtaTextField
+import kz.mechta.view.MechtaCircularProgressIndicator
 import `mechta-kmp`.shared.MR
 
 @Composable
 fun CitySelectPage(component: CitySelectComponent) {
     val context = LocalContext.current
     val uiState by component.state.subscribeAsState()
-    component.effect.watch {
-        when (it) {
-            is Effect.ShowToast -> {
-                if (it.text.isNullOrBlank()) return@watch
-                Toast.makeText(context, it.text, Toast.LENGTH_SHORT).show()
+    LaunchedEffect(component.effect) {
+        component.effect.watch {
+            when (it) {
+                is Effect.ShowToast -> {
+                    if (it.text.isNullOrBlank()) return@watch
+                    Toast.makeText(context, it.text, Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -83,16 +94,45 @@ fun CitySelectPage(component: CitySelectComponent) {
                 color = MechtaTheme.colors.text01
             )
             Spacer(modifier = Modifier.size(24.dp))
-            MechtaTextField(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp))
+            TextField(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .fillMaxWidth(),
+                shape = RoundedCornerShape(50),
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = MechtaTheme.colors.ui02,
+                    unfocusedContainerColor = MechtaTheme.colors.ui02,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                ),
+                value = uiState.textSearch,
+                onValueChange = { component.onEvent(Event.OnTextSearchChange(it)) },
+                label = {
+                    Text(
+                        text = stringResource(id = MR.strings.city_search.resourceId),
+                        color = MechtaTheme.colors.text02
+                    )
+                },
+                trailingIcon = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_search),
+                        contentDescription = null
+                    )
+                }
+            )
             Spacer(modifier = Modifier.size(24.dp))
             CityEstimatedItem(
                 name = uiState.cityEstimated.name,
                 onClick = { component.onEvent(Event.OnCityClick(uiState.cityEstimated)) }
             )
-            Spacer(modifier = Modifier.size(24.dp))
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
             ) {
+                if (uiState.isLoading) {
+                    item {
+                        MechtaCircularProgressIndicator(modifier = Modifier.fillMaxWidth())
+                    }
+                }
                 items(uiState.cityList) {
                     CityItem(
                         name = it.name,
@@ -141,7 +181,7 @@ private fun CityEstimatedItem(name: String, onClick: () -> Unit) {
         modifier = Modifier
             .clickable { onClick() }
             .fillMaxWidth()
-            .padding(horizontal = 16.dp),
+            .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(

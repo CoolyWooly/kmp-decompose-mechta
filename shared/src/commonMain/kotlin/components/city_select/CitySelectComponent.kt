@@ -4,7 +4,7 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.decompose.value.update
-import domain.MapRepository
+import data.repository.MapRepository
 import extensions.Result
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import models.CityModel
-import models.CoordinateModel
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import utils.Coordinates
@@ -21,7 +20,7 @@ import utils.WrappedSharedFlow
 
 class CitySelectComponent(
     componentContext: ComponentContext,
-    private val onNavigateToMain: () -> Unit,
+    private val onSendResult: (CityModel) -> Unit,
 ) : ComponentContext by componentContext, KoinComponent {
 
     private val mapRepository by inject<MapRepository>()
@@ -49,7 +48,7 @@ class CitySelectComponent(
 
             is Event.OnCityClick -> {
                 saveCity()
-                onNavigateToMain()
+                onSendResult(event.city)
             }
 
             is Event.OnTextSearchChange -> {
@@ -60,9 +59,10 @@ class CitySelectComponent(
 
     private fun getCityList() {
         scope.launch {
+            _state.update { it.copy(isLoading = true) }
             when (val data = mapRepository.getCities()) {
                 is Result.Error -> {
-                    _effect.tryEmit(Effect.ShowToast(data.text))
+                    _effect.emit(Effect.ShowToast(data.text))
                 }
 
                 is Result.Success -> {
@@ -73,6 +73,7 @@ class CitySelectComponent(
                     }
                 }
             }
+            _state.update { it.copy(isLoading = false) }
         }
     }
 
@@ -102,7 +103,11 @@ class CitySelectComponent(
     }
 
     private fun filterCityList(textSearch: String) {
-        val list = cities.filter { it.name.contains(textSearch) }
+        val list = cities.filter { it.name.contains(textSearch, ignoreCase = true) }
         _state.update { it.copy(cityList = list, textSearch = textSearch) }
+
+        scope.launch {
+            _effect.emit(Effect.ShowToast(textSearch))
+        }
     }
 }

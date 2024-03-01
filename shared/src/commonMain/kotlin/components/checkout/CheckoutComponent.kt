@@ -5,8 +5,8 @@ import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.bringToFront
 import com.arkivanov.decompose.router.stack.childStack
 import kotlinx.serialization.Serializable
-import domain.ProductRepository
-import domain.UserRepository
+import data.repository.ProductRepository
+import data.repository.UserRepository
 import extensions.Result
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

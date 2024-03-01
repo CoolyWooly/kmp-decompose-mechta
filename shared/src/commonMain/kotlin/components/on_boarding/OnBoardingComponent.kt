@@ -4,7 +4,7 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.decompose.value.update
-import domain.MapRepository
+import data.repository.MapRepository
 import extensions.Result
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,17 +13,21 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import models.CityModel
-import models.CoordinateModel
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import utils.Coordinates
 import utils.WrappedSharedFlow
 
+interface IOnBoardingComponent {
+
+    fun onCitySelected(cityModel: CityModel)
+}
+
 class OnBoardingComponent(
     componentContext: ComponentContext,
     private val onNavigateToMain: () -> Unit,
     private val onNavigateToCitySelect: () -> Unit,
-) : ComponentContext by componentContext, KoinComponent {
+) : IOnBoardingComponent, ComponentContext by componentContext, KoinComponent {
 
     private val mapRepository by inject<MapRepository>()
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
@@ -47,7 +51,6 @@ class OnBoardingComponent(
 
             is Event.OnNextClick -> {
                 if (_state.value.selectedIndex == 2) {
-                    saveCity()
                     onNavigateToMain()
                 } else {
                     val nextIndex = _state.value.selectedIndex + 1
@@ -98,7 +101,10 @@ class OnBoardingComponent(
         _state.update { it.copy(city = city) }
     }
 
-    private fun saveCity() {
-
+    override fun onCitySelected(cityModel: CityModel) {
+        scope.launch {
+            mapRepository.setCity(cityModel)
+            onNavigateToMain()
+        }
     }
 }

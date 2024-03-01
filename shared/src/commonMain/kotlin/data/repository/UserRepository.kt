@@ -1,4 +1,4 @@
-package domain
+package data.repository
 
 import extensions.fetch
 import extensions.Result

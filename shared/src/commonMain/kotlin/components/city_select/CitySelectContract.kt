@@ -5,6 +5,7 @@ import models.CoordinateModel
 
 
 data class State(
+    val isLoading: Boolean = false,
     val cityList: List<CityModel> = emptyList(),
     val cityEstimated: CityModel = CityModel(
         name = "Астана",

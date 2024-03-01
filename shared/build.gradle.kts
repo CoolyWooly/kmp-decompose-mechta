@@ -40,6 +40,7 @@ kotlin {
             api(libs.essenty.state.keeper)
             api(libs.parcelize.darwin.runtime)
             api(libs.ktor.client.darwin)
+            api(libs.resources)
         }
         commonMain.dependencies {
             implementation(libs.decompose)
@@ -50,6 +51,8 @@ kotlin {
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.resources)
+            implementation(libs.multiplatform.settings)
+            implementation(libs.multiplatform.settings.coroutines)
         }
     }
 }
