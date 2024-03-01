@@ -32,10 +32,10 @@ class OnBoardingComponent(
     private val mapRepository by inject<MapRepository>()
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
-    private val _state = MutableValue(State())
-    val state: Value<State> = _state
-    private val _effect = MutableSharedFlow<Effect>()
-    val effect: WrappedSharedFlow<Effect> = WrappedSharedFlow(_effect.asSharedFlow())
+    private val _state = MutableValue(OnBoardingState())
+    val state: Value<OnBoardingState> = _state
+    private val _effect = MutableSharedFlow<OnBoardingEffect>()
+    val effect: WrappedSharedFlow<OnBoardingEffect> = WrappedSharedFlow(_effect.asSharedFlow())
 
     private var cities: List<CityModel> = emptyList()
 
@@ -43,13 +43,13 @@ class OnBoardingComponent(
         getCityList()
     }
 
-    fun onEvent(event: Event) {
+    fun onEvent(event: OnBoardingEvent) {
         when (event) {
-            is Event.OnSwipe -> {
+            is OnBoardingEvent.OnSwipe -> {
                 _state.update { it.copy(selectedIndex = event.index) }
             }
 
-            is Event.OnNextClick -> {
+            is OnBoardingEvent.OnNextClick -> {
                 if (_state.value.selectedIndex == 2) {
                     onNavigateToMain()
                 } else {
@@ -58,11 +58,11 @@ class OnBoardingComponent(
                 }
             }
 
-            is Event.OnCoordinatesFetch -> {
+            is OnBoardingEvent.OnCoordinatesFetch -> {
                 getEstimatedCity(event.lat, event.lon)
             }
 
-            is Event.OnSelectCityClick -> {
+            is OnBoardingEvent.OnSelectCityClick -> {
                 onNavigateToCitySelect()
             }
         }
@@ -72,7 +72,7 @@ class OnBoardingComponent(
         scope.launch {
             when (val data = mapRepository.getCities()) {
                 is Result.Error -> {
-                    _effect.tryEmit(Effect.ShowToast(data.text))
+                    _effect.emit(OnBoardingEffect.ShowToast(data.text))
                 }
 
                 is Result.Success -> {

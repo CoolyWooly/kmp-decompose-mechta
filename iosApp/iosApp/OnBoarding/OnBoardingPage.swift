@@ -5,12 +5,15 @@ struct OnBoardingPage: View {
     
     private let component: OnBoardingComponent
     
+    var items: [OnBoardingItem] = itemsData
+    
+    @StateValue
+    private var state: OnBoardingState
+    
     init(_ component: OnBoardingComponent) {
         self.component = component
+        _state = StateValue(component.state)
     }
-    
-    var items: [OnBoardingItem] = itemsData
-    @State var index = 0
     
     var body: some View {
 
@@ -27,27 +30,29 @@ struct OnBoardingPage: View {
 
         GeometryReader { geo in
             VStack {
-                TabView (selection: $index) {
-                    ForEachIndexed(itemsData) { index, item in
-                        OnBoardingCard(item: item)
-                    }
-                }
-                .tabViewStyle(PageTabViewStyle())
-                .padding(.vertical, 20)
-                .onAppear {
-                    setupAppearance()
-                }
-                .frame(height: geo.size.height * 0.9)
+//                TabView (selection: .constant(1)) {
+//                    ForEachIndexed(itemsData) { index, item in
+//                        OnBoardingCard(item: item)
+//                    }
+//                }
+//                .tabViewStyle(PageTabViewStyle())
+//                .padding(.vertical, 20)
+//                .onAppear {
+//                    setupAppearance()
+//                }
+//                .frame(height: geo.size.height * 0.9)
+                
+                Text("asdf" + String(state.selectedIndex))
                 
                 
-                if (index == itemsData.count - 1) {
-                    OnBoardingButton(click: { component.onEvent(event: OnBoardingEventOnButtonPress()) } )
-                        .frame(height: geo.size.height * 0.1)
-                    
-                } else {
-                    EmptyView()
-                        .frame(height: geo.size.height * 0.1)
-                }
+//                if (index == itemsData.count - 1) {
+//                    OnBoardingButton(click: { component.onEvent(event: OnBoardingEventOnNextClick()) } )
+//                        .frame(height: geo.size.height * 0.1)
+//                    
+//                } else {
+//                    EmptyView()
+//                        .frame(height: geo.size.height * 0.1)
+//                }
             }
         }
     }
@@ -62,7 +67,6 @@ private struct OnBoardingCard: View {
     
     let item: OnBoardingItem
     
-    @State private var isAnimating: Bool = false
     
     var body: some View {
         ZStack {
@@ -71,7 +75,6 @@ private struct OnBoardingCard: View {
                     .resizable()
                     .scaledToFit()
                     .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.15), radius: 8, x: 6, y: 8)
-                    .scaleEffect(isAnimating ? 1.0 : 0.6)
                     .background(Color.red)
                 
                 Text(item.title)
@@ -85,11 +88,6 @@ private struct OnBoardingCard: View {
                     .padding(.horizontal, 16)
                     .frame(maxWidth: 480)
                 
-            }
-        }
-        .onAppear {
-            withAnimation(.easeOut(duration: 0.5)) {
-                isAnimating = true
             }
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)

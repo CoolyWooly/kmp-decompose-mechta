@@ -33,14 +33,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
-import com.arkivanov.decompose.extensions.compose.subscribeAsState
+import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionStatus
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.android.gms.location.LocationServices
-import components.on_boarding.Effect
-import components.on_boarding.Event
 import components.on_boarding.OnBoardingComponent
+import components.on_boarding.OnBoardingEffect
+import components.on_boarding.OnBoardingEvent
 import kotlinx.coroutines.launch
 import kz.mechta.theme.MechtaTheme
 import `mechta-kmp`.shared.MR
@@ -52,7 +52,7 @@ fun OnBoardingPage(component: OnBoardingComponent) {
     val uiState by component.state.subscribeAsState()
     component.effect.watch {
         when (it) {
-            is Effect.ShowToast -> {
+            is OnBoardingEffect.ShowToast -> {
                 if (it.text.isNullOrBlank()) return@watch
                 Toast.makeText(context, it.text, Toast.LENGTH_SHORT).show()
             }
@@ -68,7 +68,7 @@ fun OnBoardingPage(component: OnBoardingComponent) {
         LaunchedEffect(Unit) {
             scope.launch {
                 snapshotFlow { pagerState.currentPage }.collect { page ->
-                    component.onEvent(Event.OnSwipe(page))
+                    component.onEvent(OnBoardingEvent.OnSwipe(page))
                 }
             }
         }
@@ -78,7 +78,7 @@ fun OnBoardingPage(component: OnBoardingComponent) {
         if (uiState.selectedIndex == 2) {
             TrackLocation(
                 onLocationFound = { lat, lon ->
-                    component.onEvent(Event.OnCoordinatesFetch(lat = lat, lon = lon))
+                    component.onEvent(OnBoardingEvent.OnCoordinatesFetch(lat = lat, lon = lon))
                 }
             )
         }
@@ -101,11 +101,11 @@ fun OnBoardingPage(component: OnBoardingComponent) {
             ) {
                 ButtonNext(
                     selectedIndex = uiState.selectedIndex,
-                    onClick = { component.onEvent(Event.OnNextClick) }
+                    onClick = { component.onEvent(OnBoardingEvent.OnNextClick) }
                 )
                 Spacer(modifier = Modifier.size(8.dp))
                 if (uiState.selectedIndex == 2) {
-                    TextButton(onClick = { component.onEvent(Event.OnSelectCityClick) }) {
+                    TextButton(onClick = { component.onEvent(OnBoardingEvent.OnSelectCityClick) }) {
                         Text(
                             text = stringResource(id = MR.strings.no_another_city.resourceId),
                             style = MechtaTheme.typography.body1,

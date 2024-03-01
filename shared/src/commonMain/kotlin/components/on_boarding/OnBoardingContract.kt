@@ -4,7 +4,7 @@ import models.CityModel
 import models.CoordinateModel
 
 
-data class State(
+data class OnBoardingState(
     val selectedIndex: Int = 0,
     val city: CityModel = CityModel(
         name = "Астана",
@@ -13,13 +13,13 @@ data class State(
     ),
 )
 
-sealed interface Effect {
-    data class ShowToast(val text: String?) : Effect
+sealed interface OnBoardingEffect {
+    data class ShowToast(val text: String?) : OnBoardingEffect
 }
 
-sealed interface Event {
-    data class OnSwipe(val index: Int): Event
-    data object OnNextClick: Event
-    data object OnSelectCityClick: Event
-    data class OnCoordinatesFetch(val lat: Double, val lon: Double): Event
+sealed interface OnBoardingEvent {
+    data class OnSwipe(val index: Int): OnBoardingEvent
+    data object OnNextClick: OnBoardingEvent
+    data object OnSelectCityClick: OnBoardingEvent
+    data class OnCoordinatesFetch(val lat: Double, val lon: Double): OnBoardingEvent
 }
