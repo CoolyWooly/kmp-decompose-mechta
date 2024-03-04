@@ -1,6 +1,6 @@
 package kz.mechta
 
-import components.RootComponent
+import RootComponent
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import com.arkivanov.decompose.extensions.compose.jetpack.stack.Children

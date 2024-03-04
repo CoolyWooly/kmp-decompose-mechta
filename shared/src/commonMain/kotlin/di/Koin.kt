@@ -1,28 +1,13 @@
 package di
 
-import com.russhwolf.settings.ObservableSettings
-import com.russhwolf.settings.Settings
-import constants.HOST
-import data.data_source.Network
-import data.data_source.Prefs
-import data.repository.MapRepository
-import data.repository.MapRepositoryImpl
-import data.repository.ProductRepository
-import data.repository.ProductRepositoryImpl
-import data.repository.UserRepository
-import data.repository.UserRepositoryImpl
-import io.ktor.client.HttpClient
-import io.ktor.client.plugins.HttpTimeout
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.plugins.defaultRequest
-import io.ktor.client.plugins.logging.LogLevel
-import io.ktor.client.plugins.logging.Logger
-import io.ktor.client.plugins.logging.Logging
-import io.ktor.http.URLBuilder
-import io.ktor.http.takeFrom
-import io.ktor.serialization.kotlinx.json.json
-import kotlinx.coroutines.flow.Flow
-import kotlinx.serialization.json.Json
+import city_select.data.CitySelectRepository
+import city_select.data.CitySelectRepositoryImpl
+import core.data.Network
+import core.data.Prefs
+import checkout.data.ProductRepository
+import checkout.data.ProductRepositoryImpl
+import checkout.data.UserRepository
+import checkout.data.UserRepositoryImpl
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 
@@ -31,7 +16,8 @@ fun initKoin() =
         modules(
             networkModule,
             prefsModule,
-            repositoryModule
+            repositoryModule,
+            useCaseModule,
         )
     }
 
@@ -42,8 +28,15 @@ private val networkModule = module {
 private val prefsModule = module {
     single { Prefs }
 }
+
 private val repositoryModule = module {
     single<ProductRepository> { ProductRepositoryImpl() }
     single<UserRepository> { UserRepositoryImpl() }
-    single<MapRepository> { MapRepositoryImpl() }
+    single<CitySelectRepository> { CitySelectRepositoryImpl() }
+}
+
+private val useCaseModule = module {
+//    single<ProductRepository> { ProductRepositoryImpl() }
+//    single<UserRepository> { UserRepositoryImpl() }
+//    single<MapRepository> { MapRepositoryImpl() }
 }

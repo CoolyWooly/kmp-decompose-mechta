@@ -43,7 +43,7 @@ struct OnBoardingPage: View {
 //                .frame(height: geo.size.height * 0.9)
                 
                 Text("asdf" + String(state.selectedIndex))
-                
+                            
                 
 //                if (index == itemsData.count - 1) {
 //                    OnBoardingButton(click: { component.onEvent(event: OnBoardingEventOnNextClick()) } )

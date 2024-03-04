@@ -4,8 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import components.checkout.ConfirmationComponent
-import components.checkout.Step1Component
+import checkout.presentation.ConfirmationComponent
 
 @Composable
 fun ConfirmationPage(component: ConfirmationComponent) {

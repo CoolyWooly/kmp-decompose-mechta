@@ -1,6 +1,6 @@
 package kz.mechta
 
-import components.RootComponent
+import RootComponent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
