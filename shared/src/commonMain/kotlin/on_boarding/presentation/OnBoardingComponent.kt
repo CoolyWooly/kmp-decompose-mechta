@@ -60,7 +60,7 @@ class OnBoardingComponent(
 
             is OnBoardingEvent.OnNextClick -> {
                 if (_state.value.selectedIndex == 2) {
-                    onNavigateToMain()
+                    onCitySelected(state.value.city)
                 } else {
                     val nextIndex = _state.value.selectedIndex + 1
                     _state.update { it.copy(selectedIndex = nextIndex) }
