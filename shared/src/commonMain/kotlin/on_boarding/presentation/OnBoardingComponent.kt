@@ -13,6 +13,9 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import city_select.domain.model.CityModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
+import on_boarding.data.OnBoardingRepository
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import utils.Coordinates
@@ -29,7 +32,7 @@ class OnBoardingComponent(
     private val onNavigateToCitySelect: () -> Unit,
 ) : IOnBoardingComponent, ComponentContext by componentContext, KoinComponent {
 
-    private val mapRepository by inject<CitySelectRepository>()
+    private val onBoardingRepository by inject<OnBoardingRepository>()
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
     private val _state = MutableValue(OnBoardingState())
@@ -40,7 +43,13 @@ class OnBoardingComponent(
     private var cities: List<CityModel> = emptyList()
 
     init {
-        getCityList()
+        getCity { cityEmpty ->
+            if (cityEmpty) {
+                getCityList()
+            } else {
+                onNavigateToMain()
+            }
+        }
     }
 
     fun onEvent(event: OnBoardingEvent) {
@@ -68,9 +77,19 @@ class OnBoardingComponent(
         }
     }
 
+    private fun getCity(
+        decision: (cityEmpty: Boolean) -> Unit,
+    ) {
+        scope.launch {
+            delay(500)
+            val city = onBoardingRepository.getCity().first()
+            decision(city == null)
+        }
+    }
+
     private fun getCityList() {
         scope.launch {
-            when (val data = mapRepository.getCities()) {
+            when (val data = onBoardingRepository.getCities()) {
                 is Result.Error -> {
                     _effect.emit(OnBoardingEffect.ShowToast(data.text))
                 }
@@ -103,7 +122,7 @@ class OnBoardingComponent(
 
     override fun onCitySelected(cityModel: CityModel) {
         scope.launch {
-            mapRepository.setCity(cityModel)
+            onBoardingRepository.setCity(cityModel)
             onNavigateToMain()
         }
     }

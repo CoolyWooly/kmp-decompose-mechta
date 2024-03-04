@@ -1,4 +1,4 @@
-package city_select.data
+package on_boarding.data
 
 import core.data.Prefs
 import core.domain.Result
@@ -13,12 +13,13 @@ import city_select.domain.model.GetCitiesResponse
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-interface CitySelectRepository {
+interface OnBoardingRepository {
     suspend fun getCities(): Result<List<CityModel>>
+    fun getCity(): Flow<CityModel?>
     suspend fun setCity(cityModel: CityModel?): Result<Boolean>
 }
 
-class CitySelectRepositoryImpl : CitySelectRepository, KoinComponent {
+class OnBoardingRepositoryImpl : OnBoardingRepository, KoinComponent {
     private val client by inject<HttpClient>()
     private val prefs by inject<Prefs>()
     override suspend fun getCities(): Result<List<CityModel>> {
@@ -35,6 +36,10 @@ class CitySelectRepositoryImpl : CitySelectRepository, KoinComponent {
                 Result.Success(data.value.data.cities)
             }
         }
+    }
+
+    override fun getCity(): Flow<CityModel?> {
+        return prefs.getCity()
     }
 
     override suspend fun setCity(cityModel: CityModel?): Result<Boolean> {

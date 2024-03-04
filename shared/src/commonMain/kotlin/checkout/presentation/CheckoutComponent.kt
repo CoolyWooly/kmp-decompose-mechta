@@ -38,8 +38,6 @@ class CheckoutComponent(
 
         val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
-//        val scope = componentCoroutineScope()
-//
         scope.launch {
             when (val data = productRepository.getProduct("123")) {
                 is Result.Error -> {}
