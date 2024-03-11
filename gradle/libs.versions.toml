@@ -22,6 +22,11 @@ mokoRes = "0.24.0-alpha-4"
 playServicesLocation = "21.1.0"
 accompanist = "0.32.0"
 preference = "1.1.1"
+coil = "2.6.0"
+placeholder = "1.1.2"
+mindbox = "2.8.3"
+
+
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -55,6 +60,11 @@ google-location = { module = "com.google.android.gms:play-services-location", ve
 google-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
 multiplatform-settings = { module = "com.russhwolf:multiplatform-settings-no-arg", version.ref = "preference" }
 multiplatform-settings-coroutines = { module = "com.russhwolf:multiplatform-settings-coroutines", version.ref = "preference" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+placeholder-material3 = { module = "io.github.fornewid:placeholder-material3", version.ref = "placeholder" }
+mindbox-sdk = { module = "cloud.mindbox:mobile-sdk", version.ref = "mindbox" }
+mindbox-firebase = { module = "cloud.mindbox:mindbox-firebase", version.ref = "mindbox" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

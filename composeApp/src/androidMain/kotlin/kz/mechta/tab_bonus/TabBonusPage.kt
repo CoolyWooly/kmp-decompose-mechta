@@ -1,4 +1,4 @@
-package kz.mechta.main
+package kz.mechta.tab_bonus
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Surface

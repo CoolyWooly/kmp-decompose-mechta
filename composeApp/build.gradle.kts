@@ -26,6 +26,10 @@ kotlin {
             implementation(libs.resources)
             implementation(libs.google.location)
             implementation(libs.google.permissions)
+            implementation(libs.coil.compose)
+            implementation(libs.placeholder.material3)
+            implementation(libs.mindbox.sdk)
+            implementation(libs.mindbox.firebase)
         }
         commonMain.dependencies {
             implementation(projects.shared)

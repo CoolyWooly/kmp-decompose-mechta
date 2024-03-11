@@ -1,4 +1,4 @@
-package tab_home.presentation
+package root.presentation
 
 import core.domain.ProductModel
 import tab_home.domain.ActionModel
@@ -7,7 +7,7 @@ import tab_home.domain.BrandModel
 import tab_home.domain.CategoryModel
 
 
-data class TabHomeState(
+data class RootState(
     val isLoadingBanners: Boolean = true,
     val isLoadingCategories: Boolean = true,
     val isLoadingActions: Boolean = true,
@@ -27,14 +27,11 @@ data class TabHomeState(
     val favouriteList: List<Int> = emptyList(),
 )
 
-sealed interface TabHomeEffect {
-    data object GetCoordinates : TabHomeEffect
-    data class ShowToast(val text: String?) : TabHomeEffect
+sealed interface RootEffect {
+    data object GetCoordinates : RootEffect
+    data class ShowToast(val text: String?) : RootEffect
 }
 
-sealed interface TabHomeEvent {
-    data class OnSwipe(val index: Int): TabHomeEvent
-    data object OnNextClick: TabHomeEvent
-    data object OnSelectCityClick: TabHomeEvent
-    data class OnCoordinatesFetch(val lat: Double, val lon: Double): TabHomeEvent
+sealed interface RootEvent {
+    data class OnMindboxDeviceId(val deviceId: String): RootEvent
 }

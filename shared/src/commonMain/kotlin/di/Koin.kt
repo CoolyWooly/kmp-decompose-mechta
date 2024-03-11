@@ -12,6 +12,12 @@ import on_boarding.data.OnBoardingRepository
 import on_boarding.data.OnBoardingRepositoryImpl
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
+import root.data.RootRepository
+import root.data.RootRepositoryImpl
+import splashscreen.data.SplashscreenRepository
+import splashscreen.data.SplashscreenRepositoryImpl
+import tab_home.data.TabHomeRepository
+import tab_home.data.TabHomeRepositoryImpl
 
 fun initKoin() =
     startKoin {
@@ -36,6 +42,9 @@ private val repositoryModule = module {
     single<UserRepository> { UserRepositoryImpl() }
     single<CitySelectRepository> { CitySelectRepositoryImpl() }
     single<OnBoardingRepository> { OnBoardingRepositoryImpl() }
+    single<TabHomeRepository> { TabHomeRepositoryImpl() }
+    single<RootRepository> { RootRepositoryImpl() }
+    single<SplashscreenRepository> { SplashscreenRepositoryImpl() }
 }
 
 private val useCaseModule = module {

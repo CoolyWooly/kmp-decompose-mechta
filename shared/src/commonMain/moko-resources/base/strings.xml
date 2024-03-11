@@ -11,4 +11,13 @@
     <string name="select_city">Выберите город</string>
     <string name="city_search">Поиск города</string>
     <string name="most_likely_you_here">Скорее всего вы здесь</string>
+    <string name="i_search_">Я ищу...</string>
+    <string name="actions">Акции</string>
+    <string name="im_in_shop">Я в магазине</string>
+    <string name="scan_qr_and_find">Сканируйте штрих/QR коды и узнайте подробнее о товаре или оформите заказ</string>
+    <string name="in_basket">В корзине</string>
+    <string name="preorder">Предзаказ</string>
+    <string name="to_basket">В корзину</string>
+    <string name="recommendations">Рекомендации</string>
+    <string name="top_sales">Хиты продаж</string>
 </resources>

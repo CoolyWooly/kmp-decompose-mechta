@@ -14,6 +14,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.jetpack.stack.Children
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
+import kz.mechta.tab_bonus.TabBonusPage
+import kz.mechta.tab_home.TabHomePage
 import main.presentation.MainComponent
 
 @Composable

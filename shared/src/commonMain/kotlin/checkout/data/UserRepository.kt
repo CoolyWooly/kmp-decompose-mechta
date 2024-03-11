@@ -1,9 +1,9 @@
 package checkout.data
 
+import core.domain.ProductModel
 import io.ktor.client.HttpClient
 import io.ktor.client.request.url
 import io.ktor.http.HttpMethod
-import checkout.domain.model.ProductModel
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import utils.fetch

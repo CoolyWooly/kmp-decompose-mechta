@@ -1,4 +1,4 @@
-package kz.mechta.onboarding
+package kz.mechta.onboarding.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column

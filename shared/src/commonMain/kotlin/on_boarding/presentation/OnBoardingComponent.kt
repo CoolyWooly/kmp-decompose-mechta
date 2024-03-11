@@ -81,7 +81,6 @@ class OnBoardingComponent(
         decision: (cityEmpty: Boolean) -> Unit,
     ) {
         scope.launch {
-            delay(500)
             val city = onBoardingRepository.getCity().first()
             decision(city == null)
         }

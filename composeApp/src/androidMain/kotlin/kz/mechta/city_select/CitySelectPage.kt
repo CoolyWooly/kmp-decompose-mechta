@@ -40,8 +40,12 @@ import city_select.presentation.CitySelectComponent
 import city_select.presentation.Effect
 import city_select.presentation.Event
 import kz.mechta.R
+import kz.mechta.city_select.view.CityItem
+import kz.mechta.city_select.view.CityItemEstimated
 import kz.mechta.theme.MechtaTheme
 import kz.mechta.view.MechtaCircularProgressIndicator
+import kz.mechta.view.MechtaSearchField
+import kz.mechta.view.MechtaSearchView
 import `mechta-kmp`.shared.MR
 
 @Composable
@@ -76,34 +80,15 @@ fun CitySelectPage(component: CitySelectComponent) {
                 color = MechtaTheme.colors.text01
             )
             Spacer(modifier = Modifier.size(24.dp))
-            TextField(
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-                    .fillMaxWidth(),
-                shape = RoundedCornerShape(50),
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = MechtaTheme.colors.ui02,
-                    unfocusedContainerColor = MechtaTheme.colors.ui02,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                ),
+            MechtaSearchField(
+                modifier = Modifier.padding(horizontal = 16.dp),
                 value = uiState.textSearch,
+                placeholderText = stringResource(id = MR.strings.city_search.resourceId),
                 onValueChange = { component.onEvent(Event.OnTextSearchChange(it)) },
-                label = {
-                    Text(
-                        text = stringResource(id = MR.strings.city_search.resourceId),
-                        color = MechtaTheme.colors.text02
-                    )
-                },
-                trailingIcon = {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_search),
-                        contentDescription = null
-                    )
-                }
+                onSearchClick = {  }
             )
-            Spacer(modifier = Modifier.size(24.dp))
-            CityEstimatedItem(
+            Spacer(modifier = Modifier.size(16.dp))
+            CityItemEstimated(
                 name = uiState.cityEstimated.name,
                 onClick = { component.onEvent(Event.OnCityClick(uiState.cityEstimated)) }
             )
@@ -154,58 +139,5 @@ private fun TrackLocation(onLocationFound: (latitude: Double, longitude: Double)
                 permissionState.launchPermissionRequest()
             }
         }
-    }
-}
-
-@Composable
-private fun CityEstimatedItem(name: String, onClick: () -> Unit) {
-    Row(
-        modifier = Modifier
-            .clickable { onClick() }
-            .fillMaxWidth()
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Icon(
-            painter = painterResource(id = R.drawable.ic_geo),
-            contentDescription = null,
-            tint = MechtaTheme.colors.text01
-        )
-        Spacer(modifier = Modifier.size(12.dp))
-        Column {
-            Text(
-                text = name,
-                style = MechtaTheme.typography.body1,
-                color = MechtaTheme.colors.text01,
-            )
-            Spacer(modifier = Modifier.size(8.dp))
-            Text(
-                text = stringResource(id = MR.strings.most_likely_you_here.resourceId),
-                style = MechtaTheme.typography.subtitle2,
-                color = MechtaTheme.colors.text02,
-            )
-        }
-    }
-}
-
-@Composable
-private fun CityItem(name: String, onClick: () -> Unit) {
-    Column {
-        Spacer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-                .height(1.dp)
-                .background(color = MechtaTheme.colors.ui03)
-        )
-        Text(
-            modifier = Modifier
-                .clickable { onClick() }
-                .fillMaxWidth()
-                .padding(16.dp),
-            text = name,
-            style = MechtaTheme.typography.body1,
-            color = MechtaTheme.colors.text01
-        )
     }
 }

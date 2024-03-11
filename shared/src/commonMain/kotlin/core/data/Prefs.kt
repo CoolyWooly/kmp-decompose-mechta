@@ -32,5 +32,14 @@ object Prefs {
         prefs[CITY] = json
     }
 
+    fun getMindboxDeviceId(): Flow<String?> {
+        return prefs.getStringOrNullFlow(MINDBOX_DEVICEID).distinctUntilChanged()
+    }
+
+    fun setMindboxDeviceId(deviceId: String?) {
+        prefs[MINDBOX_DEVICEID] = deviceId
+    }
+
     private const val CITY = "CITY"
+    private const val MINDBOX_DEVICEID = "MINDBOX_DEVICEID"
 }

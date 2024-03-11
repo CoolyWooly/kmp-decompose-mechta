@@ -1,4 +1,4 @@
-package kz.mechta.onboarding
+package kz.mechta.onboarding.view
 
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
