@@ -11,6 +11,7 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* RootPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* RootPage.swift */; };
+		CE1FEDB12B9EE576009ECF1A /* SplashscreenPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FEDB02B9EE576009ECF1A /* SplashscreenPage.swift */; };
 		CE270AF12B392B9B00D9548B /* MutableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE270AF02B392B9B00D9548B /* MutableValue.swift */; };
 		CE270AF32B392BC500D9548B /* ObservableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE270AF22B392BC500D9548B /* ObservableValue.swift */; };
 		CE270AF52B392BF800D9548B /* SimpleChildStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE270AF42B392BF800D9548B /* SimpleChildStack.swift */; };
@@ -36,6 +37,7 @@
 		7555FF82242A565900829871 /* RootPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPage.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB3632DC29227652001CCB65 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		CE1FEDB02B9EE576009ECF1A /* SplashscreenPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashscreenPage.swift; sourceTree = "<group>"; };
 		CE270AF02B392B9B00D9548B /* MutableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableValue.swift; sourceTree = "<group>"; };
 		CE270AF22B392BC500D9548B /* ObservableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableValue.swift; sourceTree = "<group>"; };
 		CE270AF42B392BF800D9548B /* SimpleChildStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleChildStack.swift; sourceTree = "<group>"; };
@@ -90,11 +92,12 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
-				CE270B112B3C231000D9548B /* Utils */,
+				CE1FEDAF2B9EE54B009ECF1A /* Splashscreen */,
 				CE270B0E2B3BE10100D9548B /* Checkout */,
 				CE270B0B2B3BDCE800D9548B /* OnBoarding */,
 				CE270B002B3AE8BD00D9548B /* Main */,
 				CE270AEF2B392B6100D9548B /* DecomposeHelpers */,
+				CE270B112B3C231000D9548B /* Utils */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* RootPage.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
@@ -110,6 +113,14 @@
 				AB3632DC29227652001CCB65 /* Config.xcconfig */,
 			);
 			path = Configuration;
+			sourceTree = "<group>";
+		};
+		CE1FEDAF2B9EE54B009ECF1A /* Splashscreen */ = {
+			isa = PBXGroup;
+			children = (
+				CE1FEDB02B9EE576009ECF1A /* SplashscreenPage.swift */,
+			);
+			path = Splashscreen;
 			sourceTree = "<group>";
 		};
 		CE270AEF2B392B6100D9548B /* DecomposeHelpers */ = {
@@ -172,6 +183,7 @@
 				F36B1CEA2AD836FC00CB74D5 /* Compile Kotlin */,
 				7555FF77242A565900829871 /* Sources */,
 				7555FF79242A565900829871 /* Resources */,
+				CE1FEDB32BA021B4009ECF1A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -228,6 +240,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		CE1FEDB32BA021B4009ECF1A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SRCROOT/../gradlew\" -p \"$SRCROOT/../\" :shared:copyFrameworkResourcesToApp \\\n    -Pmoko.resources.PLATFORM_NAME=\"$PLATFORM_NAME\" \\\n    -Pmoko.resources.CONFIGURATION=\"$CONFIGURATION\" \\\n    -Pmoko.resources.ARCHS=\"$ARCHS\" \\\n    -Pmoko.resources.BUILT_PRODUCTS_DIR=\"$BUILT_PRODUCTS_DIR\" \\\n    -Pmoko.resources.CONTENTS_FOLDER_PATH=\"$CONTENTS_FOLDER_PATH\" \n";
+		};
 		F36B1CEA2AD836FC00CB74D5 /* Compile Kotlin */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -260,6 +289,7 @@
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				CE270AF12B392B9B00D9548B /* MutableValue.swift in Sources */,
 				CE270AF32B392BC500D9548B /* ObservableValue.swift in Sources */,
+				CE1FEDB12B9EE576009ECF1A /* SplashscreenPage.swift in Sources */,
 				CE270B0A2B3AE94300D9548B /* TabProfilePage.swift in Sources */,
 				CE270B062B3AE92F00D9548B /* TabCartPage.swift in Sources */,
 				CE270AF52B392BF800D9548B /* SimpleChildStack.swift in Sources */,

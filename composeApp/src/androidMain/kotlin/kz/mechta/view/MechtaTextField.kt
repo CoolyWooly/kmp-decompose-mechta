@@ -60,7 +60,6 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import kz.mechta.R
 import kz.mechta.theme.MechtaTheme
-import `mechta-kmp`.shared.MR
 
 //@OptIn(ExperimentalFoundationApi::class)
 //@Composable

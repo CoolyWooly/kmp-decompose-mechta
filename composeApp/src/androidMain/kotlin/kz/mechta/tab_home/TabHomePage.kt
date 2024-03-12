@@ -24,6 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
+import kz.mechta.shared.MR
 import kz.mechta.tab_home.view.BannersPager
 import kz.mechta.tab_home.view.CategoriesPager
 import kz.mechta.tab_home.view.ImInShopButton
@@ -31,7 +32,6 @@ import kz.mechta.theme.MechtaTheme
 import kz.mechta.view.MechtaScannerView
 import kz.mechta.view.MechtaSearchView
 import kz.mechta.view.TitledProductsListHorizontal
-import `mechta-kmp`.shared.MR
 import tab_home.presentation.TabHomeComponent
 
 @OptIn(ExperimentalFoundationApi::class)

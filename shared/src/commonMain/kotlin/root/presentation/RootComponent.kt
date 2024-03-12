@@ -139,9 +139,11 @@ class RootComponent(
 
     @Serializable
     sealed class Configuration {
+
         @Serializable
         data object Splashscreen : Configuration()
 
+        @Serializable
         data object OnBoarding : Configuration()
 
         @Serializable

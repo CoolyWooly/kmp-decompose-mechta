@@ -64,3 +64,9 @@ android {
         minSdk = libs.versions.android.minSdk.get().toInt()
     }
 }
+
+multiplatformResources {
+    resourcesPackage.set("kz.mechta.shared")
+}
+
+task("testClasses")

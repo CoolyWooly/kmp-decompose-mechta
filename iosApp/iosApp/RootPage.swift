@@ -28,6 +28,7 @@ private struct ChildView: View {
     
     var body: some View {
         switch child {
+        case let child as RootComponent.ChildSplashscreen: SplashscreenPage(child.component)
         case let child as RootComponent.ChildCheckout: CheckoutPage(child.component)
         case let child as RootComponent.ChildMain: MainPage(child.component)
         case let child as RootComponent.ChildOnBoarding: OnBoardingPage(child.component)

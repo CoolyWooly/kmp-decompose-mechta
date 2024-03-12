@@ -42,11 +42,10 @@ import city_select.presentation.Event
 import kz.mechta.R
 import kz.mechta.city_select.view.CityItem
 import kz.mechta.city_select.view.CityItemEstimated
+import kz.mechta.shared.MR
 import kz.mechta.theme.MechtaTheme
 import kz.mechta.view.MechtaCircularProgressIndicator
 import kz.mechta.view.MechtaSearchField
-import kz.mechta.view.MechtaSearchView
-import `mechta-kmp`.shared.MR
 
 @Composable
 fun CitySelectPage(component: CitySelectComponent) {

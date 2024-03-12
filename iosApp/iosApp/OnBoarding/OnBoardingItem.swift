@@ -1,7 +1,8 @@
 import Foundation
 import SwiftUI
+import Shared
 
-struct OnBoardingItem: Identifiable {
+struct OnBoardingModel: Identifiable {
     var id = UUID()
     var title: String
     var text: String
@@ -9,20 +10,20 @@ struct OnBoardingItem: Identifiable {
 }
 
 
-let itemsData: [OnBoardingItem] = [
-    OnBoardingItem(
-        title: "Гарантия низкой цены",
-        text: "Самые низкие цены на более, чем 10 000 товаров! Если найдете дешевле, мы снизим цену!",
+let itemsData: [OnBoardingModel] = [
+    OnBoardingModel(
+        title: Strings().get(id: MR.strings().onboard_text_1, args: []),
+        text: Strings().get(id: MR.strings().onboard_text_1, args: []),
         image: "blueberry"
     ),
-    OnBoardingItem(
-        title: "Вернём CashBack бонусами",
-        text: "Дарим бонусы за покупки! Бонусами можно оплатить всю стоимость товара",
+    OnBoardingModel(
+        title: Strings().get(id: MR.strings().onboard_title_2, args: []),
+        text: Strings().get(id: MR.strings().onboard_text_2, args: []),
         image: "strawberry"
     ),
-    OnBoardingItem(
-        title: "Ваш город Алматы?",
-        text: "Укажите ваш город, чтобы увидеть актуальные товары с быстрой доставкой",
+    OnBoardingModel(
+        title: Strings().get(id: MR.strings().onboard_title_3, args: ["qwer"]),
+        text: Strings().get(id: MR.strings().onboard_text_3, args: []),
         image: "strawberry"
     )
 ]

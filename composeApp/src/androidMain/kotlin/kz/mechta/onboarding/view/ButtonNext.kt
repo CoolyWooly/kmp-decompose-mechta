@@ -41,8 +41,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import kz.mechta.R
+import kz.mechta.shared.MR
 import kz.mechta.theme.MechtaTheme
-import `mechta-kmp`.shared.MR
 
 @Composable
 fun ButtonNext(

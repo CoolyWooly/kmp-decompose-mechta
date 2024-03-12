@@ -20,9 +20,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kz.mechta.R
+import kz.mechta.shared.MR
 import kz.mechta.theme.MechtaTheme
 import kz.mechta.view.MechtaImageView
-import `mechta-kmp`.shared.MR
 import tab_home.domain.CategoryModel
 
 @Composable

@@ -60,7 +60,7 @@ class SplashscreenComponent(
     ) {
         scope.launch {
             val city = splashscreenRepository.getCity().first()
-            delay(3000)
+            delay(1000)
             decision(city == null)
         }
     }

@@ -36,8 +36,8 @@ import on_boarding.presentation.OnBoardingEvent
 import kotlinx.coroutines.launch
 import kz.mechta.onboarding.view.ButtonNext
 import kz.mechta.onboarding.view.OnBoardingItem
+import kz.mechta.shared.MR
 import kz.mechta.theme.MechtaTheme
-import `mechta-kmp`.shared.MR
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

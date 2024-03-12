@@ -14,8 +14,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kz.mechta.R
+import kz.mechta.shared.MR
 import kz.mechta.theme.MechtaTheme
-import `mechta-kmp`.shared.MR
 
 @Composable
 fun OnBoardingItem(

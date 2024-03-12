@@ -5,8 +5,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import kz.mechta.shared.MR
 import main.presentation.TabCatalogComponent
-import `mechta-kmp`.shared.MR
 
 @Composable
 fun TabCatalogPage(

@@ -29,12 +29,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import kz.mechta.R
+import kz.mechta.shared.MR
 import kz.mechta.theme.MechtaTheme
 import kz.mechta.utils.PictureUrlConverter
 import kz.mechta.utils.extension.addEmptyLines
 import kz.mechta.utils.extension.shimmerPlaceholder
 import kz.mechta.utils.extension.spacedString
-import `mechta-kmp`.shared.MR
 
 @Composable
 fun ProductItem(
